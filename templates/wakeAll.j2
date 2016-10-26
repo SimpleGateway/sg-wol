@@ -1,0 +1,5 @@
+#!/bin/sh
+
+{% for host in staticHosts %}
+wol_{{ staticHosts[host].name }}
+{% endfor %}
