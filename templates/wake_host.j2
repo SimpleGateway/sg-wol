@@ -1,2 +1,2 @@
 #!/bin/sh
-arp -W {{ item.value.mac }} {{ int_if }}
+arp -W {{ item.mac }} {{ sg_common_int_if }}

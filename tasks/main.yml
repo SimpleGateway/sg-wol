@@ -1,7 +1,17 @@
 ---
 - name: Install a WoL script for each host
-  template: src=wake_host.j2 dest="/usr/local/sbin/wol_{{ item.value.name }}" owner=root group=wheel mode=0755
-  with_dict: "{{ staticHosts }}"
+  template:
+    src: wake_host.j2
+    dest: "/usr/local/sbin/wol_{{ item.name }}"
+    owner: root
+    group: wheel
+    mode: 0755
+  with_items: "{{ sg_common_staticHosts }}"
 
 - name: Install wakeAll script
-  template: src=wakeAll.j2 dest=/usr/local/sbin/wakeAll owner=root group=wheel mode=0755
+  template:
+    src: wakeAll.j2
+    dest: /usr/local/sbin/wakeAll
+    owner: root
+    group: wheel
+    mode: 0755

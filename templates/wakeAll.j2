@@ -1,5 +1,5 @@
 #!/bin/sh
 
-{% for host in staticHosts %}
-wol_{{ staticHosts[host].name }}
+{% for host in sg_common_staticHosts %}
+wol_{{ host.name }}
 {% endfor %}
