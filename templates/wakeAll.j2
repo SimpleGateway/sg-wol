@@ -1,5 +1,9 @@
 #!/bin/sh
 
-{% for host in sg_common_staticHosts %}
+{% for interface in sg_network %}
+{% if interface.hosts is defined %}
+{% for host in interface.hosts %}
 wol_{{ host.name }}
+{% endfor %}
+{% endif %}
 {% endfor %}

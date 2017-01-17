@@ -1,2 +1,2 @@
 #!/bin/sh
-arp -W {{ item.mac }} {{ sg_common_int_if }}
+arp -W {{ item.1.mac }} {{ item.0.name }}

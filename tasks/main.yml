@@ -2,11 +2,18 @@
 - name: Install a WoL script for each host
   template:
     src: wake_host.j2
-    dest: "/usr/local/sbin/wol_{{ item.name }}"
+    dest: "/usr/local/sbin/wol_{{ item.1.name }}"
     owner: root
     group: wheel
     mode: 0755
-  with_items: "{{ sg_common_staticHosts }}"
+  with_subelements:
+    - "{{ sg_network }}"
+    - hosts
+    - flags:
+      skip_missing: True
+  loop_control:
+    label: "{{ item.1.name }}"
+
 
 - name: Install wakeAll script
   template:
