@@ -1,2 +1,2 @@
 #!/bin/sh
-arp -W {{ item.1.mac }} {{ item.0.name }}
+arp -W {{ item.1.mac }} {{ sg_interfaces|selectattr('name', 'equalto', item.0.attach_to)|map(attribute='carpdev')|first|default(item.0.attach_to) }}
